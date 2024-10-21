@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+        background-image: url('img/kalkulator1.jpg');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .calculator {
+      background-color: #ffe6e6; /* Warna pink muda */
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      width: 280px;
+    }
+
+    .display {
+      background-color: #fff5f5; /* Latar belakang display lebih terang */
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: right;
+      color: #cc0000; /* Warna angka merah gelap */
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 15px;
+    }
+
+    .button {
+      background-color: #ff9999; /* Warna tombol pink lebih gelap */
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s;
+    }
+
+    .button:hover {
+      background-color: #ff8080; /* Warna saat tombol di-hover */
+    }
+
+    .button:active {
+      background-color: #ff6666; /* Warna saat tombol ditekan */
+      transform: scale(0.95);
+    }
+
+    .operator {
+      background-color: #ff4d4d; /* Warna tombol operator lebih mencolok */
+      color: #ffffff;
+    }
+
+    .operator:hover {
+      background-color: #ff3333;
+    }
+
+    .equal {
+      grid-column: span 2;
+      background-color: #ff4d4d; /* Warna tombol sama dengan (equals) */
+      color: white;
+    }
+
+    .equal:hover {
+      background-color: #ff3333;
+    }
+
+    .equal:active {
+      background-color: #ff1a1a;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display"></div>
+    <div class="buttons">
+      <button class="button operator" id="clear">C</button>
+      <button class="button operator" id="divide">/</button>
+      <button class="button operator" id="multiply">*</button>
+      <button class="button operator" id="subtract">-</button>
+      <button class="button" id="seven">7</button>
+      <button class="button" id="eight">8</button>
+      <button class="button" id="nine">9</button>
+      <button class="button operator" id="add">+</button>
+      <button class="button" id="four">4</button>
+      <button class="button" id="five">5</button>
+      <button class="button" id="six">6</button>
+      <button class="button" id="one">1</button>
+      <button class="button" id="two">2</button>
+      <button class="button" id="three">3</button>
+      <button class="button equal" id="equals">=</button>
+      <button class="button" id="zero">0</button>
+      <button class="button" id="decimal">.</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+    let buttons = document.querySelectorAll('.button');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        let buttonText = button.textContent;
+        switch (buttonText) {
+          case 'C':
+            display.textContent = '';
+            break;
+          case '=':
+            try {
+              display.textContent = eval(display.textContent);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          default:
+            display.textContent += buttonText;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
